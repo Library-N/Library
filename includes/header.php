@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: auth/login.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,14 +14,22 @@ if (!isset($_SESSION['username'])) {
     <header>
         <img src="assets/images/logo.png" alt="LibraryAdmin Logo" class="logo">
         <h1>LibraryAdmin</h1>
-        <nav>
-            <a href="index.php">Dashboard</a>
-            <a href="books.php">Books</a>
-            <a href="members.php">Members</a>
-            <a href="loans.php">Loans</a>
-            <a href="reports.php">Reports</a>
-            <a href="settings.php">Settings</a>
-            <a href="auth/logout.php">Logout</a>
-        </nav>
     </header>
-    <main>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+        </div>
+        <ul class="menu-list">
+            <li><a href="index.php">Dashboard</a></li>
+            <li><a href="books.php">Books</a></li>
+            <li><a href="members.php">Members</a></li>
+            <li><a href="loans.php">Loans</a></li>
+            <li><a href="reports.php">Reports</a></li>
+            <li><a href="settings.php">Settings</a></li>
+            <li><a href="auth/logout.php">Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+</body>
+
+</html>

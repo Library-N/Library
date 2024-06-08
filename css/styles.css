@@ -5,11 +5,16 @@ body {
     padding: 0;
 }
 
-header, footer {
+header {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 header .logo {
@@ -23,7 +28,50 @@ header h1 {
     color: white;
 }
 
-h1 {
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 60px; /* Adjust based on header height */
+    left: 0;
+    background-color: #333;
+    padding-top: 10px;
+    z-index: 100;
+}
+
+.sidebar-header {
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    padding: 10px;
+}
+
+.menu-list li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-list li a:hover {
+    background-color: #555;
+}
+
+.main-content {
+    margin-left: 200px; /* Adjust based on sidebar width */
+    padding: 20px;
+    padding-top: 80px; /* Adjust based on header height */
+}
+
+h2 {
     color: #333;
 }
 
