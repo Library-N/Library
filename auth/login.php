@@ -1,41 +1,71 @@
 <?php
-include '../includes/db.php';
 session_start();
 
-$error = '';  // Initialize an error message variable
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $conn = new mysqli('localhost', 'root', 'root', 'libraryadmin');
 
-    // Check if input is email or username
-    if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
-        // Input is an email
-        $sql = "SELECT * FROM users WHERE email='$username'";
-    } else {
-        // Input is a username
-        $sql = "SELECT * FROM users WHERE username='$username'";
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    $result = $conn->query($sql);
+    if (isset($_POST['signup'])) {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+        $role = 'user'; // Default role
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['username'] = $user['username'];
+        if ($password != $confirm_password) {
+            $error = "Passwords do not match.";
+        } else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssss", $username, $email, $hashed_password, $role);
+
+            if ($stmt->execute()) {
+                header("Location: login.php#sign-in-form");
+                exit();
+            } else {
+                $error = "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $stmt->close();
+        }
+    }
+
+    if (isset($_POST['signin'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $sql = "SELECT id, username, password, role FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($id, $username, $hashed_password, $role);
+        $stmt->fetch();
+
+        if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
+            $_SESSION['user_id'] = $id;
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $role;
+
+            $_SESSION['success_message'] = "Login successful! Welcome, " . $username . " (" . $role . ")";
+
             header("Location: ../index.php");
             exit();
         } else {
-            $error = "Invalid password.";
+            $error = "Invalid email or password.";
         }
-    } else {
-        $error = "No user found.";
+
+        $stmt->close();
     }
+
+    $conn->close();
 }
-
-$conn->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,50 +73,59 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - LibraryAdmin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/login.css">
-    <style>
-        .input-group label.focused {
-            opacity: 0;
-        }
-        .error {
-            color: red;
-            margin-bottom: 15px;
-            display: none;
-        }
-    </style>
+    <title>Sign-in</title>
 </head>
 
 <body>
-<div class="half left">
-    <img src="../assets/images/login-removebg-preview 1.png" alt="">
-    <h1>Library-N</h1>
-</div>
-<div class="half right">
-    <h1>Log in</h1>
-    <form method="post" action="">
-        <div class="input-group">
-            <label for="username">Username/Email</label>
-            <input type="text" id="username" name="username" required>
+
+    <div class="container" id="container">
+        <?php if (isset($error)): ?>
+            <p class="error"><?php echo $error; ?></p>
+        <?php endif; ?>
+        <div class="form-container sign-in" id="sign-in-form">
+            <form action="login.php" method="POST">
+                <h1>Sign In</h1>
+                <span>Welcome to the Admin Portal.</span>
+                <span>Please login with your credentials to access the system</span>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" name="signin">Sign In</button>
+                <a href="#"><b>Forget Your Password?</b></a>
+            </form>
         </div>
-        <div class="input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <button type="button" id="togglePassword">Show</button>
+        <div class="form-container sign-up" id="sign-up-form">
+            <form action="login.php" method="POST">
+                <h1>Create Account</h1>
+                <span>Please fill out the form below to create a new admin account.</span>
+                <span></span>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Password Confirmation" required>
+                <button type="submit" name="signup">Sign Up</button>
+            </form>
         </div>
-        <div class="error" id="error">
-            <?php if (!empty($error)) : ?>
-                <?php echo $error; ?>
-            <?php endif; ?>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1><br><br>
+                    <p>Enter your personal details to use </p>
+                    <p>this site.</p><br><br>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Admin!</h1><br><br>
+                    <p>Register with your personal details to </p>
+                    <p>use this site</p><br><br>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
         </div>
-        <br>
-        <button type="submit">Login</button>
-        <p>Forgot Password? Or <a href="./register.php">Register</a></p>
-        <a href="../onboarding.php">Return</a>
-        <!-- <button type="submit">Register</button> -->
-    </form>
-</div>
-<script src="../js/login.js"></script>
+    </div>
+
+    <script src="../js/login.js"></script>
 </body>
 
 </html>

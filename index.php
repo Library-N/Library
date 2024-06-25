@@ -7,7 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const successMessage = document.getElementById("success-message");
+            if (successMessage) {
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -70,7 +80,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="./auth/logout.php">
                         <span class="icon">
                             <img src="assets/icons/majesticons_logout.svg" alt="logout_icon">
                         </span>
@@ -94,6 +104,26 @@
             <div class="toggle">
                 <img src="assets/icons/pepicons-pop_menu.svg" alt="menu">
             </div>
+        </div>
+        <div>
+            <?php
+            session_start();
+            if (!isset($_SESSION['user_id'])) {
+                header("Location: index1.php");
+                exit();
+            }
+
+            $success_message = '';
+            if (isset($_SESSION['success_message'])) {
+                $success_message = $_SESSION['success_message'];
+                unset($_SESSION['success_message']);
+            }
+            ?>
+            <?php if ($success_message) : ?>
+                <div id="success-message" class="success">
+                    <?php echo $success_message; ?>
+                </div>
+            <?php endif; ?>
         </div>
         <!-- =========== Scripts =========  -->
         <script src="js/main.js"></script>
