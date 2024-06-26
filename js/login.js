@@ -1,35 +1,40 @@
-const inputs = document.querySelectorAll('form input');
+const container = document.getElementById('container');
+const registerBtn = document.getElementById('register');
+const loginBtn = document.getElementById('login');
 
-inputs.forEach(input => {
-    input.addEventListener('focus', () => {
-        input.previousElementSibling.classList.add('focused');
-    });
-
-    input.addEventListener('blur', () => {
-        if (input.value === '') {
-            input.previousElementSibling.classList.remove('focused');
-        }
-    });
-
-    if (input.value !== '') {
-        input.previousElementSibling.classList.add('focused');
-    }
+registerBtn.addEventListener('click', () => {
+    container.classList.add("active");
 });
-const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
 
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
-        });
+loginBtn.addEventListener('click', () => {
+    container.classList.remove("active");
+});
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const errorDiv = document.getElementById('error');
-            if (errorDiv.textContent.trim() !== '') {
-                errorDiv.style.display = 'block';
-                setTimeout(() => {
-                    errorDiv.style.display = 'none';
-                }, 3000); // 5 seconds
-            }
-        });
+document.addEventListener("DOMContentLoaded", function() {
+    const signInButton = document.getElementById('login');
+    const signUpButton = document.getElementById('register');
+    const signInForm = document.getElementById('sign-in-form');
+    const signUpForm = document.getElementById('sign-up-form');
+
+    function updateTitle() {
+        if (signUpForm.classList.contains('active')) {
+            document.title = "Sign Up";
+        } else {
+            document.title = "Sign In";
+        }
+    }
+
+    signInButton.addEventListener('click', () => {
+        signInForm.classList.add('active');
+        signUpForm.classList.remove('active');
+        updateTitle();
+    });
+
+    signUpButton.addEventListener('click', () => {
+        signUpForm.classList.add('active');
+        signInForm.classList.remove('active');
+        updateTitle();
+    });
+
+    updateTitle();
+});
