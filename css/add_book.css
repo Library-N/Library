@@ -1,8 +1,9 @@
 :root {
-    --blue: #007bff;
-    /* Ganti dengan warna biru yang Anda inginkan */
-    --black2: #333;
-    /* Ganti dengan warna hitam yang Anda inginkan */
+    --blue: #74512D;
+    --white: #FFF3EC;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
 }
 
 body {

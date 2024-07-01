@@ -62,7 +62,7 @@ $result = $conn->query($sql);
         </header>
         <div class="main-container">
             <div class="main-content">
-                <button class="add-book-button" onclick="location.href='add_book.php'">+ Add Book</button>
+                <button class="add-book-button" onclick="location.href='./pages/add_book.php'">+ Add Book</button>
                 <div class="books-container">
                     <table class="books-table">
                         <thead>
@@ -86,7 +86,7 @@ $result = $conn->query($sql);
                                     echo "<td>" . $row["author"] . "</td>";
                                     echo "<td><span class='category-label " . strtolower($row["category"]) . "'>" . $row["category"] . "</span></td>";
                                     echo "<td>" . ($row["availability"] == 'available' ? 'Tersedia' : 'Tidak tersedia') . "</td>";
-                                    echo "<td><button style='border: none; cursor: pointer;' onclick=\"location.href='edit_book.php?id=" . $row["book_id"] . "'\"><img src='assets/images/edit.png' alt='edit icon'></button></td>";
+                                    echo "<td><button style='border: none; cursor: pointer;' onclick=\"location.href='./pages/edit_book.php?id=" . $row["book_id"] . "'\"><img src='assets/images/edit.png' alt='edit icon'></button></td>";
                                     echo "<td><button style='margin-left: -20px; border: none; cursor: pointer;' onclick=\"location.href='controllers/delete_book_process.php?id=" . $row["book_id"] . "'\"><img src='assets/images/delete.png' alt='delete icon'></button></td>";
                                     echo "</tr>";
                                 }

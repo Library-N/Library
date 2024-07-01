@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Book</title>
-    <link rel="stylesheet" href="css/add_book.css">
+    <link rel="stylesheet" href="../css/add_book.css">
 </head>
 
 <body>
     <div class="main-container">
         <h1>Add Book</h1>
-        <form method="POST" action="./controllers/add_book_process.php">
+        <form method="POST" action="../controllers/add_book_process.php">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
             <br>
@@ -29,7 +29,7 @@
             <br>
             <button type="submit">Add Book</button>
         </form>
-        <button class="cancel-button" onclick="location.href='books.php'">Cancel</button>
+        <button class="cancel-button" onclick="location.href='./books.php'">Cancel</button>
     </div>
 </body>
 

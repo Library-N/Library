@@ -1,5 +1,5 @@
 <?php
-include 'includes/db.php';
+include '../includes/db.php';
 
 $book_id = $_GET["id"];
 $sql = "SELECT * FROM books WHERE book_id=$book_id";
@@ -22,13 +22,13 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Book</title>
-    <link rel="stylesheet" href="css/edit_book.css">
+    <link rel="stylesheet" href="../css/edit_book.css">
 </head>
 
 <body>
     <div class="edit-form">
         <h2>Edit Book</h2>
-        <form method="POST" action="./controllers/edit_book_process.php">
+        <form method="POST" action="../controllers/edit_book_process.php">
             <input type="hidden" name="book_id" value="<?php echo $row['book_id']; ?>">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" value="<?php echo $row['title']; ?>" required>
@@ -47,7 +47,7 @@ $conn->close();
             <br>
             <button type="submit">Update Book</button>
         </form>
-        <button class="cancel-button" onclick="location.href='books.php'">Cancel</button>
+        <button class="cancel-button" onclick="location.href='./books.php'">Cancel</button>
     </div>
 </body>
 
