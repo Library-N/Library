@@ -1,5 +1,5 @@
 <?php
-include('./includes/db.php');
+include('../includes/db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
-        header('Location: ./members.php');
+        header('Location: ../members.php');
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
