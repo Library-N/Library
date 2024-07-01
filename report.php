@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- =============== Navigation ================ -->
-<?php include './navbar.php'; ?>
+<?php include './includes/navbar.php'; ?>
 <!-- ========================= Main ==================== -->
 <div class="main">
     <div class="topbar">
