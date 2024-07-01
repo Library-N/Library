@@ -39,7 +39,7 @@
         </div>
         <br>
         <div class="tambahbtn">
-            <a href="addMember.php"><i class="fa fa-plus"></i><b> Add Member</b></a>
+            <a href="./pages/addMember.php"><i class="fa fa-plus"></i><b> Add Member</b></a>
         </div>
         <br>
         <div class="card-container">
@@ -71,7 +71,7 @@
                                         <td>".$row["phone"]."</td>
                                         <td>".$row["address"]."</td>
                                         <td>
-                                            <a href='./editMember.php?id=".$row["id"]."'><i class='fa fa-pencil-square'></i></a> |
+                                            <a href='./pages/editMember.php?id=".$row["id"]."'><i class='fa fa-pencil-square'></i></a> |
                                             <a href='./controllers/deleteMember.php?id=".$row["id"]."'><i class='fa fa-trash'></i></a>
                                         </td>
                                     </tr>";
