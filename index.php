@@ -24,7 +24,7 @@
 <body>
     <!-- =============== Navigation ================ -->
     <?php
-    include './navbar.php';
+    include 'includes/navbar.php';
     ?>
     <!-- ========================= Main ==================== -->
     <div class="main">
@@ -35,10 +35,16 @@
         </div>
         <div class="main-container">
             <div class="main-content">
-                <header>
-                    <h1 style="color: #74512D;">Welcome, Library Admin</h1>
-                    <p style="margin-top: 10px; color: rgba(116, 87, 70, 0.5);;">Manage your library
-                        with ease</p>
+                <header class="header-container">
+                    <div class="header-left">
+                        <h1 style="color: #74512D;">Welcome, Library Admin</h1>
+                        <p style="margin-top: 10px; color: rgba(116, 87, 70, 0.5);;">Manage your library with ease</p>
+                    </div>
+                    <div class="header-right">
+                        <span class="notification-icon">
+                            <img src="assets/images/ion_notifcations.png" alt="notification_icon">
+                        </span>
+                    </div>
                 </header>
                 <div class="container">
                     <div class="cards-and-chart">
@@ -51,9 +57,9 @@
                                             <img src="assets/images/books-icon.png" alt="Book Icon" class="card-icon">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-number">1240</p>
+                                            <p class="card-number">Loading...</p>
                                             <p class="card-change">
-                                                <span class="change-percentage">3.3%</span>
+                                                <span class="change-percentage">Loading...</span>
                                                 <span class="card-date">Since last month</span>
                                             </p>
                                         </div>
@@ -63,12 +69,12 @@
                                     <div class="card-content">
                                         <div class="card-header">
                                             <span style="color: #74512D;">Members</span>
-                                            <img src="assets/images/members-icon.png" alt="Book Icon" class="card-icon">
+                                            <img src="assets/images/members-icon.png" alt="Members Icon" class="card-icon">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-number">320</p>
+                                            <p class="card-number">Loading...</p>
                                             <p class="card-change">
-                                                <span class="change-percentage">3.0%</span>
+                                                <span class="change-percentage">Loading...</span>
                                                 <span class="card-date">Since last month</span>
                                             </p>
                                         </div>
@@ -78,12 +84,12 @@
                                     <div class=" card-content">
                                         <div class="card-header">
                                             <span style="color: #74512D;">Active Loans</span>
-                                            <img src="assets/images/date-icon.png" alt="Book Icon" class="card-icon">
+                                            <img src="assets/images/date-icon.png" alt="Date Icon" class="card-icon">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-number">55</p>
+                                            <p class="card-number">Loading...</p>
                                             <p class="card-change">
-                                                <span class="change-percentage">10.0%</span>
+                                                <span class="change-percentage">Loading...</span>
                                                 <span class="card-date">Since last month</span>
                                             </p>
                                         </div>
@@ -96,9 +102,9 @@
                                             <img src="assets/images/books-icon.png" alt="Book Icon" class="card-icon">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-number">2</p>
+                                            <p class="card-number">Loading...</p>
                                             <p class="card-change">
-                                                <span class="change-percentage">-20.0%</span>
+                                                <span class="change-percentage">Loading...</span>
                                                 <span class="card-date">Since last month</span>
                                             </p>
                                         </div>

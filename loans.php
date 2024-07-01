@@ -1,6 +1,7 @@
 <?php include('./includes/db.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/loans.css">
 </head>
+
 <body>
     <!-- =============== Navigation ================ -->
-    <?php include './navbar.php'; ?>
+    <?php
+    include 'includes/navbar.php';
+    ?>
     <!-- ========================= Main ==================== -->
     <div class="main">
         <div class="topbar">
@@ -25,10 +29,11 @@
             </div>
         </div>
         <div class="btnActiveLoans">
-                <a href="addMember.php"><b> Active Loans</b></a>
-            </div>
+            <a href="addMember.php"><b> Active Loans</b></a>
+        </div>
         <!-- =========== Scripts =========  -->
         <script src="js/main.js"></script>
     </div>
 </body>
+
 </html>

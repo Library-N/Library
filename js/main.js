@@ -1,111 +1,102 @@
-let list = document.querySelectorAll(".navigation li");
-
-function activeLink() {
-  list.forEach((item) => {
-    item.classList.remove("hovered");
-  });
-  this.classList.add("hovered");
-}
-
-list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
-// Menu Toggle
-let toggle = document.querySelector(".toggle");
-let navigation = document.querySelector(".navigation");
-let main = document.querySelector(".main");
-
-toggle.onclick = function () {
-  navigation.classList.toggle("active");
-  main.classList.toggle("active");
-};
-// Random data for chart (weekly for January)
-const labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'Total Books',
-        data: [1200, 1210, 1225, 1240],
-        backgroundColor: '#FF6384',
-    }, {
-        label: 'Total Members',
-        data: [300, 310, 315, 320],
-        backgroundColor: '#36A2EB',
-    }, {
-        label: 'Active Loans',
-        data: [40, 45, 50, 55],
-        backgroundColor: '#FFCE56',
-    }, {
-        label: 'Late Returns',
-        data: [5, 3, 7, 2],
-        backgroundColor: '#4BC0C0',
-    }]
-};
-
-// Calculate percentage increase from last month
-const lastMonthData = {
-    totalBooks: 1200,
-    totalMembers: 310,
-    activeLoans: 50,
-    lateReturns: 5
-};
-
-// Update cards with percentage increase
 document.addEventListener('DOMContentLoaded', function () {
-    const totalBooksElement = document.getElementById('totalBooksCard');
-    const totalBooksIncrease = ((data.datasets[0].data[data.datasets[0].data.length - 1] - lastMonthData
-        .totalBooks) / lastMonthData.totalBooks * 100).toFixed(1);
-    totalBooksElement.lastElementChild.textContent = `${totalBooksIncrease}% from last month`;
+    // Fetch data from the backend
+    fetch('/Library/controllers/fetch_data.php')
+        .then(response => response.json())
+        .then(data => {
+            // Populate cards with fetched data
+            document.querySelector('#books .card-number').textContent = data.totalBooks;
+            document.querySelector('#books .change-percentage').textContent = `${data.totalBooksChange}%`;
+            
+            document.querySelector('#totalMembersCard .card-number').textContent = data.totalMembers;
+            document.querySelector('#totalMembersCard .change-percentage').textContent = `${data.totalMembersChange}%`;
+            
+            document.querySelector('#activeLoansCard .card-number').textContent = data.activeLoans;
+            document.querySelector('#activeLoansCard .change-percentage').textContent = `${data.activeLoansChange}%`;
+            
+            document.querySelector('#lateReturnsCard .card-number').textContent = data.lateReturns;
+            document.querySelector('#lateReturnsCard .change-percentage').textContent = `${data.lateReturnsChange}%`;
 
-    const totalMembersElement = document.getElementById('totalMembersCard');
-    const totalMembersIncrease = ((data.datasets[1].data[data.datasets[1].data.length - 1] -
-        lastMonthData.totalMembers) / lastMonthData.totalMembers * 100).toFixed(1);
-    totalMembersElement.lastElementChild.textContent = `${totalMembersIncrease}% from last month`;
+            // Prepare data for the chart
+            const chartLabels = data.chartData.map(item => `Week ${item.week}`);
+            const chartTotalBooks = data.chartData.map(item => item.totalBooks);
+            const chartTotalMembers = data.chartData.map(item => item.totalMembers);
+            const chartActiveLoans = data.chartData.map(item => item.activeLoans);
+            const chartLateReturns = data.chartData.map(item => item.lateReturns);
 
-    const activeLoansElement = document.getElementById('activeLoansCard');
-    const activeLoansIncrease = ((data.datasets[2].data[data.datasets[2].data.length - 1] -
-        lastMonthData.activeLoans) / lastMonthData.activeLoans * 100).toFixed(1);
-    activeLoansElement.lastElementChild.textContent = `${activeLoansIncrease}% from last month`;
+            // Update chart with fetched data
+            const chartData = {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Total Books',
+                    data: chartTotalBooks,
+                    backgroundColor: '#FF6384',
+                }, {
+                    label: 'Total Members',
+                    data: chartTotalMembers,
+                    backgroundColor: '#36A2EB',
+                }, {
+                    label: 'Active Loans',
+                    data: chartActiveLoans,
+                    backgroundColor: '#FFCE56',
+                }, {
+                    label: 'Late Returns',
+                    data: chartLateReturns,
+                    backgroundColor: '#4BC0C0',
+                }]
+            };
 
-    const lateReturnsElement = document.getElementById('lateReturnsCard');
-    const lateReturnsIncrease = ((data.datasets[3].data[data.datasets[3].data.length - 1] -
-        lastMonthData.lateReturns) / lastMonthData.lateReturns * 100).toFixed(1);
-    lateReturnsElement.lastElementChild.textContent = `${lateReturnsIncrease}% from last month`;
-});
-
-// Chart configuration
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Library Statistics Overview (January)'
-            }
-        },
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Week'
+            const ctx = document.getElementById('januaryOverviewChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Library Statistics Overview (January)'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Week'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Count'
+                            }
+                        }
+                    }
                 }
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'Count'
-                }
-            }
-        }
+            });
+        });
+
+    // Navigation active link highlight
+    let list = document.querySelectorAll(".navigation li");
+
+    function activeLink() {
+        list.forEach((item) => {
+            item.classList.remove("hovered");
+        });
+        this.classList.add("hovered");
     }
-};
 
-// Render chart
-window.onload = function () {
-    var ctx = document.getElementById('januaryOverviewChart').getContext('2d');
-    new Chart(ctx, config);
-};
+    list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+    // Menu Toggle
+    let toggle = document.querySelector(".toggle");
+    let navigation = document.querySelector(".navigation");
+    let main = document.querySelector(".main");
+
+    toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+    };
+});

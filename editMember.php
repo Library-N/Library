@@ -1,4 +1,4 @@
-<?php 
+<?php
 include './controllers/editMember.php';
 include './includes/db.php';
 ?>
@@ -18,7 +18,7 @@ include './includes/db.php';
 <body>
     <!-- =============== Navigation ================ -->
     <?php
-    include './navbar.php';
+    include 'includes/navbar.php';
     ?>
     <!-- ========================= Main ==================== -->
     <div class="main">

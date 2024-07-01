@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include 'includes/navbar.php';
 ?>
 
 <h2>Reports</h2>
