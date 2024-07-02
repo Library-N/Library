@@ -1,0 +1,14 @@
+.wrapper {
+  margin-left: 20px;
+}
+
+.table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+#search {
+  float: right;
+}
