@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = new mysqli('localhost', 'root', 'root', 'libraryadmin');
+    $conn = new mysqli('localhost', 'root', '', 'libraryadmin');
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="container" id="container">
-        <?php if (isset($error)): ?>
+        <?php if (isset($error)) : ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
         <div class="form-container sign-in" id="sign-in-form">

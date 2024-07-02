@@ -1,4 +1,3 @@
-<?php 
 include '../controllers/editMember.php';
 include '../includes/db.php';
 ?>
