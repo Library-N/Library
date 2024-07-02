@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         echo "Record updated successfully";
-        header('Location: ./members.php');
+        header('Location: ../members.php');
         exit;
     } else {
         echo "Error updating record: " . $conn->error;

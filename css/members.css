@@ -330,17 +330,15 @@ body {
     box-shadow: 3px -3px 5px #fff, -3px 3px 5px #bebebe;
     transition: 0.3s ease;
     width: 95%;
-    height: 80vh;
+    height: 80vh; /* Set a fixed height */
     padding: 10px;
-}
-
-.card {
-    width: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .card-content {
     padding: 15px;
 }
+
 /* Add styles for the data table members.php */
 .member-table {
     width: 100%;
@@ -358,12 +356,13 @@ body {
     background-color: var(--blue);
     color: #fff;
     border-radius:10px 10px 0 0;
+    text-align: center;
 }
 
 .member-table td {
     background-color: var(--light-gray);
     color: var(--black);
-    /* box-shadow: 3px -3px 5px #fff, -3px 3px 5px #bebebe; */
+    text-align: center;
 }
 
 .member-table tr:hover {
@@ -388,16 +387,13 @@ body {
 .fa-pencil-square {
     color: var(--red);
     border-radius: 50px;
-    /* background: #fff;
-    box-shadow:  33px -33px 65px #bebebe,-33px 33px 65px #ffffff; */
 }
 
 .fa-trash {
     color: var(--red);
     border-radius: 50px;
-    /* background: #fff;
-    box-shadow:  33px -33px 65px #bebebe,-33px 33px 65px #ffffff; */
 }
+
 /* Add styles for the editMember.php*/
 .edit-form {
     background: white;
@@ -437,6 +433,18 @@ body {
 .edit-form button:hover {
     background: var(--black2);
 }
+.edit-form a{
+    background: var(--blue);
+    color: white;
+    padding: 8.5px 20px 9px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration:none;
+    float:right;
+    margin-right:40px;
+
+}
 /* Add styles for the addMember.php*/
 .add-form {
     background: white;
@@ -474,6 +482,20 @@ body {
 }
 
 .add-form button:hover {
+    background: var(--black2);
+}
+.add-form a{
+    background: var(--blue);
+    color: white;
+    padding: 8.5px 20px 9px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration:none;
+    float:right;
+    margin-right:40px;
+}
+.add-form a:hover {
     background: var(--black2);
 }
 /* =====================================Members.php==================================================*/

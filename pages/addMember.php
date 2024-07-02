@@ -1,11 +1,9 @@
-<?php
 include '../controllers/addMember.php';
 include '../includes/db.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +11,6 @@ include '../includes/db.php';
     <title>Add Member</title>
     <link rel="stylesheet" href="../css/members.css">
 </head>
-
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
@@ -94,7 +91,7 @@ include '../includes/db.php';
     </div>
     <!-- ========================= Main ==================== -->
     <div class="main">
-        <div class="topbar">
+    <div class="topbar">
             <div class="toggle">
                 <img src="../assets/icons/pepicons-pop_menu.svg" alt="menu">
             </div>
@@ -118,5 +115,4 @@ include '../includes/db.php';
     <!-- =========== Scripts =========  -->
     <script src="../js/main.js"></script>
 </body>
-
 </html>

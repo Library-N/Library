@@ -267,11 +267,9 @@ body {
     box-shadow: 3px -3px 5px #fff, -3px 3px 5px #bebebe;
     transition: 0.3s ease;
     width: 95%;
-    height: 80vh;
-    /* Set a fixed height */
+    height: 80vh; /* Set a fixed height */
     padding: 10px;
-    overflow-y: auto;
-    /* Enable vertical scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .card-content {
@@ -294,7 +292,7 @@ body {
 .loans-table th {
     background-color: var(--blue);
     color: #fff;
-    border-radius: 10px 10px 0 0;
+    border-radius:10px 10px 0 0;
     text-align: center;
 }
 
@@ -332,7 +330,6 @@ body {
     color: var(--red);
     border-radius: 50px;
 }
-
 .viewbtn {
     float: right;
     overflow: hidden;
@@ -352,7 +349,6 @@ body {
     cursor: pointer;
     margin-right: 40px;
 }
-
 .viewbtn a:hover {
     color: #ddd;
 }
@@ -408,19 +404,17 @@ body {
 .add-form button:hover {
     background: var(--black2);
 }
-
-.add-form a {
+.add-form a{
     background: var(--blue);
     color: white;
     padding: 8.5px 20px 9px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none;
-    float: right;
-    margin-right: 40px;
+    text-decoration:none;
+    float:right;
+    margin-right:40px;
 }
-
 .add-form a:hover {
     background: var(--black2);
 }

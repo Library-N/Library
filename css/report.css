@@ -159,17 +159,17 @@ body {
 }
 
 .topbar {
-    position: absolute;
     width: 100%;
     height: 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 0 10px;
+    gap: 10px; /* Adding gap to space out elements */
 }
 
 .toggle {
-    position: fixed;
+    position: relative;
     width: 60px;
     height: 60px;
     display: flex;
@@ -178,188 +178,23 @@ body {
     font-size: 2.5rem;
     cursor: pointer;
 }
-
-/* ====================== Books ========================== */
-
-.main-container {
-    margin: 20px;
+.topbar h2 {
+    color: var(--blue);
+    margin: auto;
 }
 
-.books-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+.container-wrapper{
+    position: absolute;
+    width: calc(100% - 300px);
+    margin: 50px;
+    min-height: 90vh;
+    background: var(--white);
+    transition: 0.5s;
 }
 
-.inventory-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.inventory-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    padding-right: 20px;
-    padding-left: 80px;
-}
-
-.menu-icon img {
-    width: 30px;
-    height: 30px;
-}
-
-h1 {
-    color: #74512D;
-    margin: 0;
-}
-
-.search-container {
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    padding-left: 5px;
-    padding-right: 10px;
-    border-radius: 15px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.search-container input {
+.card {
+    background: white;
+    width: 95%;
     padding: 10px;
-    padding-right: 100px;
-    padding-left: 20px;
-    border: none;
-    outline: none;
 }
 
-.search-container .search-button {
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-
-}
-
-.search-container .search-button img {
-    width: 20px;
-    height: 20px;
-}
-
-.category-filter {
-    z-index: 1;
-}
-
-.category-filter select {
-    padding: 10px;
-    padding-right: 50px;
-    border-radius: 10px;
-    outline: none;
-    border: 1px solid #ddd;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.add-book-button {
-    background-color: #ffffff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    color: #74512D;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-size: medium;
-    font-weight: bold;
-}
-
-.books-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.books-table th,
-.books-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.books-table th {
-    background-color: #f9f9f9;
-}
-
-.books-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.category-label {
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: white;
-}
-
-.category-label.fiction {
-    background-color: #4CAF50;
-}
-
-.category-label.dystopian {
-    background-color: #FF5722;
-}
-
-.category-label.classic {
-    background-color: #FFC107;
-}
-
-.category-label.adventure {
-    background-color: #00BCD4;
-}
-
-.category-label.romance {
-    background-color: #E91E63;
-}
-
-.wrapper {
-  margin-left: 20px;
-}
-
-.table,
-th,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-#search {
-  float: right;
-}
-/* ====================== Responsive Design ========================== */
-@media (max-width: 991px) {
-    .navigation {
-        left: -300px;
-    }
-
-    .navigation.active {
-        width: 300px;
-        left: 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .navigation {
-        width: 100%;
-        left: -100%;
-        z-index: 1000;
-    }
-
-    .navigation.active {
-        width: 100%;
-        left: 0;
-    }
-}
